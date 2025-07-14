@@ -162,7 +162,7 @@ struct TabButton: View {
             .frame(width: 200, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 500)
-                    .fill(isSelected ? Color.blue : Color.clear)
+                    .fill(isSelected ? Color.yellow : Color.clear)
             )
         }
     }
@@ -198,7 +198,7 @@ struct PlantItem: View {
         .frame(height: 56)
         .background(
             RoundedRectangle(cornerRadius: 11)
-                .fill(isSelected ? Color.blue : Color.clear)
+                .fill(isSelected ? Color.yellow : Color.clear)
         )
         .padding(.horizontal, 12)
     }

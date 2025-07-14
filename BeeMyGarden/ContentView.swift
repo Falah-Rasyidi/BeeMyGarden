@@ -148,7 +148,7 @@ struct TabButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 4) {
-                Text("􀓔")
+                Text("#")
                     .font(.system(size: 19, weight: .medium))
                     .frame(width: 44, height: 24)
                 Text(title)
@@ -159,7 +159,7 @@ struct TabButton: View {
             .foregroundColor(isSelected ? .white.opacity(0.96) : .white.opacity(0.23))
             .padding(.vertical, 10)
             .padding(.horizontal, 28)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(width: 200, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 500)
                     .fill(isSelected ? Color.blue : Color.clear)

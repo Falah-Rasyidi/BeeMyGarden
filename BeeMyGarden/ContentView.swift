@@ -18,18 +18,6 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Background Image
-                AsyncImage(url: URL(string: "https://cdn.builder.io/api/v1/image/assets/TEMP/13e84b4b88ea9590839ea7649174741ce22cd1b4?width=3928")) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    Color.green.opacity(0.3)
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height * 1.2)
-                .clipped()
-                .ignoresSafeArea()
-
                 HStack(spacing: 0) {
                     // Left Floating Tab Bar
                     if geometry.size.width > 768 {
@@ -59,80 +47,17 @@ struct ContentView: View {
 
                     // Main Area
                     HStack(spacing: 0) {
-                        // Sidebar
-                        if sidebarVisible {
-                            VStack(spacing: 0) {
-                                // Header
-                                HStack {
-                                    Text("Your Garden")
-                                        .font(.system(size: geometry.size.width > 768 ? 29 : 24, weight: .bold))
-                                        .foregroundColor(.white)
-
-                                    Spacer()
-
-                                    Button("Edit") {
-                                        // Action
-                                    }
-                                    .font(.system(size: geometry.size.width > 768 ? 17 : 15, weight: .semibold))
-                                    .foregroundColor(.white.opacity(0.96))
-                                    .padding(.horizontal, geometry.size.width > 768 ? 20 : 16)
-                                    .frame(height: geometry.size.width > 768 ? 44 : 36)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 500)
-                                            .fill(.ultraThinMaterial)
-                                    )
-                                }
-                                .padding(.horizontal, geometry.size.width > 768 ? 28 : 16)
-                                .frame(height: geometry.size.width > 768 ? 92 : 72)
-
-                                // Section: Plants
-                                VStack(spacing: 4) {
-                                    HStack {
-                                        Text("Plants")
-                                            .font(.system(size: geometry.size.width > 768 ? 20 : 18, weight: .semibold))
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        Text("􀆈") // SF Symbol for "plus"
-                                            .font(.system(size: geometry.size.width > 768 ? 17 : 15, weight: .semibold))
-                                            .foregroundColor(.white.opacity(0.96))
-                                    }
-                                    .padding(.horizontal, geometry.size.width > 768 ? 24 : 16)
-                                    .frame(height: geometry.size.width > 768 ? 66 : 54)
-
-                                    ForEach(plants, id: \.self) { plant in
-                                        PlantItem(name: plant, isSelected: selectedPlant == plant)
-                                            .onTapGesture {
-                                                selectedPlant = plant
-                                            }
-                                    }
-                                }
-                                .padding(.top, 16)
-                                Spacer()
-                            }
-                            .frame(width: geometry.size.width > 768 ? 320 : nil)
-                            .background(
-                                RoundedRectangle(cornerRadius: geometry.size.width > 768 ? 46 : 20, style: .continuous)
-                                    .fill(Color(red: 214/255, green: 214/255, blue: 214/255, opacity: 0.45))
-                                    .overlay(
-                                        Rectangle()
-                                            .fill(Color(red: 84/255, green: 84/255, blue: 88/255, opacity: 0.65))
-                                            .frame(width: 0.5),
-                                        alignment: .trailing
-                                    )
-                            )
-                        }
-
                         // Content Area
                         VStack(spacing: 0) {
                             // Navigation Bar
                             HStack {
                                 Button(action: {
                                     sidebarVisible.toggle()
+                                    print("left button pressed")
                                 }) {
-                                    Text("􀆉")
+                                    Text("<")
                                         .font(.system(size: geometry.size.width > 768 ? 19 : 17, weight: .medium))
                                         .foregroundColor(.white.opacity(0.96))
-                                        .frame(width: geometry.size.width > 768 ? 44 : 36, height: geometry.size.width > 768 ? 44 : 36)
                                         .background(
                                             Circle()
                                                 .fill(.ultraThinMaterial)
@@ -147,11 +72,12 @@ struct ContentView: View {
 
                                 Spacer()
 
-                                Button(action: {}) {
-                                    Text("􀓔")
+                                Button(action: {
+                                    print("right button pressed")
+                                }) {
+                                    Text(">")
                                         .font(.system(size: geometry.size.width > 768 ? 19 : 17, weight: .medium))
                                         .foregroundColor(.white.opacity(0.96))
-                                        .frame(width: geometry.size.width > 768 ? 44 : 36, height: geometry.size.width > 768 ? 44 : 36)
                                         .background(
                                             Circle()
                                                 .fill(.ultraThinMaterial)
@@ -205,6 +131,7 @@ struct ContentView: View {
                         )
                         .padding(geometry.size.width > 768 ? 16 : 8)
                     }
+                    .padding(-10)
                 }
             }
         }

@@ -21,6 +21,7 @@ struct PlantDetailView: View {
                 model
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .padding(.top, 50)
             } placeholder: {
                 Image(systemName: "ellipsis")
                     .font(.custom("Arial", size: 100))
@@ -43,6 +44,16 @@ struct PlantDetailView: View {
                 .multilineTextAlignment(.center)
                 .transition(.opacity)
                 .animation(.default, value: plantName)
+            
+            Spacer()
+            
+            Button() {
+                // PUT BUTTON LOGIC RIGHT HERE SAGAR
+            } label: {
+                Text("Place")
+                    .font(.custom("Arial", size: 24))
+                    .frame(width: 100, height: 50)
+            }
         }
         .frame(maxWidth: 1000)
         .padding(.horizontal, 16)

@@ -10,24 +10,15 @@ import RealityKit
 
 struct ContentView: View {
     let tabs = ["Plants", "Tools", "Objects", "Growth"]
-//    let plants = ["Bottle Brush", "Grevillea", "Banksia", "Kangaroo Paw"]
     let plants: [Plant]
     
     @State private var selectedTab = "Plants"
     @State private var index = 0;
     
-    @State private var selectedPlantName: String
-    @State private var selectedPlantFile: String
-    @State private var selectedPlantDescription: String
-    
     @State private var sidebarVisible = true
     
     init(plants: [Plant]) {
         self.plants = plants
-        
-        selectedPlantName = plants[0].plantName
-        selectedPlantFile = plants[0].plantFile
-        selectedPlantDescription = plants[0].plantDescription
     }
     
     var body: some View {

@@ -44,7 +44,9 @@ struct ContentView: View {
                     plantFile: plants[abs(index) % plants.count].plantFile,
                     plantDescription: plants[abs(index) % plants.count].plantDescription
                 )
-            }.background(
+                .padding(.bottom, 35)
+            }
+            .background(
                 RoundedRectangle(cornerRadius: geometry.size.width > 768 ? 46 : 20, style: .continuous)
                     .fill(.ultraThinMaterial)
                     .overlay(

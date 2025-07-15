@@ -22,7 +22,9 @@ struct PlantDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
-                Text("Loading...")
+                Image(systemName: "ellipsis")
+                    .font(.custom("Arial", size: 100))
+                    .padding(.top, 300)
             }
 
             Spacer()
@@ -30,6 +32,8 @@ struct PlantDetailView: View {
             Text(plantName)
                 .font(.extraLargeTitle)
                 .foregroundColor(.white.opacity(0.96))
+                .transition(.opacity)
+                .animation(.default, value: plantName)
             
             Spacer()
             
@@ -37,6 +41,8 @@ struct PlantDetailView: View {
                 .font(.system(size: geometry.size.width > 768 ? 27 : 37))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
+                .transition(.opacity)
+                .animation(.default, value: plantName)
         }
         .frame(maxWidth: 1000)
         .padding(.horizontal, 16)

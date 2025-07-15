@@ -13,7 +13,7 @@ struct PlantDetailView: View {
     let plantName: String
     let plantFile: String
     let plantDescription: String
-
+    
     var body: some View {
         VStack(spacing: 10) {
             Model3D(named: plantFile) {
@@ -22,14 +22,13 @@ struct PlantDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
-                
+                Text("Loading...")
             }
-            
+
             Spacer()
             
             Text(plantName)
                 .font(.extraLargeTitle)
-//                .font(.system(size: geometry.size.width > 768 ? 27 : 22, weight: .semibold))
                 .foregroundColor(.white.opacity(0.96))
             
             Spacer()

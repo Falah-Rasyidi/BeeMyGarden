@@ -13,9 +13,8 @@ struct ContentView: View {
     let plants: [Plant]
     
     @State private var selectedTab = "Plants"
-    @State private var index = 0;
-    
     @State private var sidebarVisible = true
+    @State private var index = 0
     
     init(plants: [Plant]) {
         self.plants = plants
@@ -24,19 +23,20 @@ struct ContentView: View {
     var body: some View {
         GeometryReader {
             geometry in
-            VStack {
-                NavigationBarView(
-                    geometry: geometry,
-                    onLeftTap: {
-                        sidebarVisible.toggle()
-                        index -= 1
-                        print("left button pressed")
-                    },
-                    onRightTap: {
-                        index += 1
-                        print("right button pressed")
-                    }
-                )
+            HStack(alignment: .center, spacing: 100) {
+                Button(action: {
+                    index -= 1
+                }) {
+                    Label("", systemImage: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(width: 44, height: 44, alignment: .center)
+                        .background(Color(red: 0.37, green: 0.37, blue: 0.37).opacity(0.18))
+                        .background(Color.white.opacity(0.86))
+                        .cornerRadius(500)
+                }
+                .offset(x: 50)
+                .frame(width: 44, height: 44, alignment: .center)
                 
                 PlantDetailView(
                     geometry: geometry,
@@ -45,6 +45,20 @@ struct ContentView: View {
                     plantDescription: plants[abs(index) % plants.count].plantDescription
                 )
                 .padding(.bottom, 35)
+                
+                Button(action: {
+                    index += 1
+                }) {
+                    Label("", systemImage: "chevron.right")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(width: 44, height: 44, alignment: .center)
+                        .background(Color(red: 0.37, green: 0.37, blue: 0.37).opacity(0.18))
+                        .background(Color.white.opacity(0.86))
+                        .cornerRadius(500)
+                }
+                .offset(x: -50)
+                .frame(width: 44, height: 44, alignment: .center)
             }
             .background(
                 RoundedRectangle(cornerRadius: geometry.size.width > 768 ? 46 : 20, style: .continuous)

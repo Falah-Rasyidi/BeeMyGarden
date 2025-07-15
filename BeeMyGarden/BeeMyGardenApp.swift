@@ -14,7 +14,7 @@ struct BeeMyGardenApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(plants: plantChoices)
                 .environment(appModel)
         }
 

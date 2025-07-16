@@ -77,12 +77,18 @@ struct ContentView: View {
                     PlantDetailView(
                         modelDescriptors: appState.modelDescriptors,
                         selectedFileName: appState.selectedFileName,
+                        index: index,
                         
                         geometry: geometry,
                         plantName: plants[abs(index) % plants.count].plantName,
                         plantFile: plants[abs(index) % plants.count].plantFile,
                         plantDescription: plants[abs(index) % plants.count].plantDescription
-                    )
+                    ) { descriptor in
+                        if let model = appState.placeableObjectsByFileName[descriptor.fileName] {
+                            print("\(descriptor.fileName)")
+                            appState.placementManager?.select(model)
+                        }
+                    }
                     .padding(.bottom, 35)
                     
                     Button(action: {

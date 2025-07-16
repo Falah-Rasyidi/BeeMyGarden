@@ -14,7 +14,7 @@ struct BeeMyGardenApp: App {
     @State private var appState = AppState()
     @State private var modelLoader = ModelLoader()
 
-    var body: some Scene {
+    var body: some SwiftUI.Scene {
         WindowGroup {
             ContentView(
                 appState: appState,
@@ -28,6 +28,8 @@ struct BeeMyGardenApp: App {
         }
 
         ImmersiveSpace(id: appModel.immersiveSpaceID) {
+            ObjectPlacementRealityView(appState: appState)
+            
             ImmersiveView()
                 .environment(appModel)
                 .onAppear {

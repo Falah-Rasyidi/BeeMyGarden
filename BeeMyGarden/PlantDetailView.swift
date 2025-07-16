@@ -11,6 +11,7 @@ import RealityKit
 struct PlantDetailView: View {
     let modelDescriptors: [ModelDescriptor]
     var selectedFileName: String? = nil
+    let index: Int
     
     let geometry: GeometryProxy
     let plantName: String
@@ -24,7 +25,11 @@ struct PlantDetailView: View {
             get: { selectedFileName == descriptor.fileName },
             set: { _ in
                 if let selectionHandler {
+                    print("BINDING SUCCESSFUL")
                     selectionHandler(descriptor)
+                }
+                else {
+                    print("BINDING NOT SUCCESSFUL")
                 }
             }
         )
@@ -65,8 +70,12 @@ struct PlantDetailView: View {
             
             Button() {
                 // PUT BUTTON LOGIC RIGHT HERE SAGAR
+                print("BUTTON PRESSED")
+                if let selectionHandler {
+                    selectionHandler(modelDescriptors[index])
+                }
             } label: {
-                Text(modelDescriptors)
+                Text("Place")
                     .font(.custom("Arial", size: 24))
                     .frame(width: 100, height: 50)
             }

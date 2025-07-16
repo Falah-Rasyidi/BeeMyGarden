@@ -9,10 +9,26 @@ import SwiftUI
 import RealityKit
 
 struct PlantDetailView: View {
+    let modelDescriptors: [ModelDescriptor]
+    var selectedFileName: String? = nil
+    
     let geometry: GeometryProxy
     let plantName: String
     let plantFile: String
     let plantDescription: String
+    
+    var selectionHandler: ((ModelDescriptor) -> Void)? = nil
+    
+    private func binding(for descriptor: ModelDescriptor) -> Binding<Bool> {
+        Binding<Bool> (
+            get: { selectedFileName == descriptor.fileName },
+            set: { _ in
+                if let selectionHandler {
+                    selectionHandler(descriptor)
+                }
+            }
+        )
+    }
     
     var body: some View {
         VStack(spacing: 10) {
@@ -50,7 +66,7 @@ struct PlantDetailView: View {
             Button() {
                 // PUT BUTTON LOGIC RIGHT HERE SAGAR
             } label: {
-                Text("Place")
+                Text(modelDescriptors)
                     .font(.custom("Arial", size: 24))
                     .frame(width: 100, height: 50)
             }

@@ -9,13 +9,15 @@ import SwiftUI
 import RealityKit
 
 struct ContentView: View {
+    let appState: AppState
     let plants: [Plant]
     
     @State private var selectedTab = "Plants"
     @State private var sidebarVisible = true
     @State private var index = 0
     
-    init(plants: [Plant]) {
+    init(appState: AppState, plants: [Plant]) {
+        self.appState = appState
         self.plants = plants
     }
     
@@ -73,6 +75,9 @@ struct ContentView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                     
                     PlantDetailView(
+                        modelDescriptors: appState.modelDescriptors,
+                        selectedFileName: appState.selectedFileName,
+                        
                         geometry: geometry,
                         plantName: plants[abs(index) % plants.count].plantName,
                         plantFile: plants[abs(index) % plants.count].plantFile,
@@ -108,7 +113,9 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(plants: plantChoices)
+    ContentView(appState: AppState.previewAppState(),
+                plants: plantChoices
+    )
 }
 
 /// MARK - Icon Tab Button

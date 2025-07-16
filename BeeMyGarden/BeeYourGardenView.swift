@@ -11,8 +11,6 @@ import SwiftUI
 struct BeeYourGardenView: View {
     var body: some View {
         ZStack {
-            // 橙色背景
-           
             
             // 主窗口容器
             VStack(spacing: 0) {
@@ -79,11 +77,10 @@ struct MainWindow: View {
                 
                 // 主标题
                 Text("Bee your Garden")
-                    .font(.custom("SF Pro", size: 64))
+                    .font(.custom("SF Pro", size: 70))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
-                
                 // 副标题
                 Text("Bring your vision to life — for you, and for the planet")
                     .font(.custom("SF Pro", size: 32))

@@ -11,14 +11,25 @@ import SwiftUI
 struct BeeMyGardenApp: App {
 
     @State private var appModel = AppModel()
+    @State private var appState = AppState()
+    @State private var modelLoader = ModelLoader()
 
-    var body: some Scene {
+    var body: some SwiftUI.Scene {
         WindowGroup {
-            ContentView(plants: plantChoices)
+            ContentView(
+                appState: appState,
+                plants: plantChoices
+            )
                 .environment(appModel)
+                .task {
+                    await modelLoader.loadObjects()
+                    appState.setPlaceableObjects(modelLoader.placeableObjects)
+                }
         }
 
         ImmersiveSpace(id: appModel.immersiveSpaceID) {
+            ObjectPlacementRealityView(appState: appState)
+            
             ImmersiveView()
                 .environment(appModel)
                 .onAppear {
